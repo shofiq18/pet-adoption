@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme = 'light'>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment-6</title>
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <!-- font awesome link here -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- tailwind and daisyui link here -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-    Hello word
+    <!-- header section start here -->
+    <header>
+        <!-- navbar start  here -->
+        <nav class=" px-3 md:px-3 lg:max-w-7xl mx-auto flex justify-between items-center my-6 md:my-8 lg:my-16">
+            
+             <i class="fa-solid fa-bars lg:hidden"></i>
+            
+            <div class="flex justify-center items-center gap-3">
+                <img src="images/logo.webp" alt="">
+                <h2 class="text-2xl font-bold">Peddy</h2>
+            </div>
+            <div>
+                <ul class=" hidden lg:flex justify-center items-center text-gray-500 gap-8">
+                    <li>Home</li>
+                    <li>Shop</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+            <div>
+                <div class=" bg-white border-2 border-gray-200 rounded-3xl py-2 px-3">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <!-- main section start here -->
+    <main>
+        <!-- bannar section start here -->
+         <div class="px-3 lg:max-w-7xl mx-auto text-center items-center justify-center ">
+            <h3 class="text-gray-400 font-bold text-lg md:text-xl  lg:text-2xl pt-4">Bringing Families Together ❤️‍🔥 </h3>
+            <h1 class="text-black font-bold text-3xl md:text-5xl lg:text-7xl my-4 lg:my-8">Your Path to Adoption <br> Starts Here</h1>
+            <p class="text-base text-gray-600">It is a long established fact that a reader will be distracted by the readable content of a page when looking <br> at its layout. The point of using Lorem Ipsum is that it has a.</p>
+            <button class="bg-[#0E7A81] px-8 py-3 rounded-lg text-white my-8">View More</button>
+            <div>
+                <img src="images/pet.webp" alt="">
+            </div>
+         </div>
+    </main>
+    <!-- footer section start here -->
+    <footer>
+
+    </footer>
 </body>
+
 </html>
