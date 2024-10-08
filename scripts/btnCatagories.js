@@ -20,6 +20,38 @@ const loadDetails = async (petId) => {
 };
 const displayDetails = (petData) => {
     console.log(petData);
+    const detailsContainer = document.getElementById("modalContent");
+    detailsContainer.innerHTML =
+        `
+    <img src=${petData.image}>
+    <h4 class="  pt-5 font-bold text-xl">${petData.pet_name}</h4>
+        <div class=" pt-3 text-gray-500 text-sm ">
+          <div class="flex   gap-8">
+         <div>
+            <p><i class="fa-solid fa-grip-vertical mr-3"></i><span>${petData.breed}</span></p>
+            <p><i class="fa-solid fa-mercury  mr-3"></i><span>${petData.gender}</span></p>
+            <p><i class="fa-solid fa-mercury  mr-3"></i><span>${petData.vaccinated_status}</span></p>
+         </div>
+        <div>
+            <p><i class="fa-solid fa-cake-candles mr-3 "></i><span>${petData.date_of_birth}</span></p>
+            <p><i class="fa-solid fa-dollar-sign mr-3 "></i><span>${petData.price}</span></p>
+         </div>
+
+        </div>   
+         <div class="divider "></div>
+         <h4 class=" pb-3 font-bold text-black text-sm">Details Information</h4>
+         <p>${petData.pet_details}</p>
+        </div>
+      
+
+         
+
+
+
+         
+    `
+
+    document.getElementById("showModalData").click();
 };
 
 
@@ -54,16 +86,16 @@ const loadAllPets = () => {
 const loadCategoryPets = (id) => {
     // alert(id);
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error))
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error))
 
 }
 
 const displayPets = (pets) => {
     const petsContainer = document.getElementById("all-pets")
-   
-    
+
+
     // if(all-pets.length == 0) {
     //     petsContainer.classList.remove("grid");
     //     petsContainer.innerHTML = 
@@ -74,7 +106,7 @@ const displayPets = (pets) => {
     //         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at <br> 
     //             its layout. The point of using Lorem Ipsum is that it has a.</p>
     //        </div>
-        
+
     //     `;
     // }else{
     //     petsContainer.classList.add("grid");
@@ -123,8 +155,8 @@ const displayCategories = (categories) => {
         console.log(item);
         // create a button
         const buttonContainer = document.createElement("div");
-       buttonContainer.innerHTML = 
-       `
+        buttonContainer.innerHTML =
+            `
        <button onclick="loadCategoryPets(${item.id})" class="btn">
        ${item.category}
        </button>
