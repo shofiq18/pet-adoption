@@ -9,6 +9,19 @@ const loadCategories = () => {
         .catch((error) => console.log(error))
 
 };
+// pet details load function here 
+
+const loadDetails = async (petId) => {
+    console.log(petId);
+    const uri = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
+    const res = await fetch(uri);
+    const data = await res.json();
+    displayDetails(data.petData);
+};
+const displayDetails = (petData) => {
+    console.log(petData);
+};
+
 
 // const cardDemo = {
 
@@ -49,14 +62,26 @@ const loadCategoryPets = (id) => {
 
 const displayPets = (pets) => {
     const petsContainer = document.getElementById("all-pets")
-    // petsContainer.innerHTML = "";
+   
     
-    // if(all-pets.length ==0) {
-    //     petsContainer.innerHTML = "NO content here";
-    //     return;
+    // if(all-pets.length == 0) {
+    //     petsContainer.classList.remove("grid");
+    //     petsContainer.innerHTML = 
+    //     `
+    //    <div class=" px-3 lg:max-w-7xl mx-auto min-h-[300px] w-3/4  flex flex-col gap-5 justify-center items-center bg-gray-100 rounded-lg">
+    //         <img src="images/error.webp" alt="">
+    //         <h2 class="text-center text-3xl font-bold">No Information Available</h2>
+    //         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at <br> 
+    //             its layout. The point of using Lorem Ipsum is that it has a.</p>
+    //        </div>
+        
+    //     `;
+    // }else{
+    //     petsContainer.classList.add("grid");
     // }
-    pets.forEach(pet => {
-        console.log(pet);
+
+    pets.forEach((pet) => {
+        // console.log(pet);
         const card = document.createElement("div")
         card.classList = "card bg-base-100 border-2  border-gray-100 rounded-lg shadow";
         card.innerHTML = `
@@ -79,7 +104,7 @@ const displayPets = (pets) => {
 
             <button class=" bg-white px-4 py-2 border-2  border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>    
            <button class=" px-2 lg:px-4 py-2 bg-white border-2 font-bold  border-gray-200 text-[#0E7A81] rounded-lg">Adopt</button>
-           <button class=" px-2 lg:px-4 py-2 bg-white border-2 font-bold  border-gray-200 text-[#0E7A81] rounded-lg">Details</button>
+           <button onclick="loadDetails(${pet.petId})"  class=" px-2 lg:px-4 py-2 bg-white border-2 font-bold  border-gray-200 text-[#0E7A81] rounded-lg">Details</button>
            </div>
 
 
