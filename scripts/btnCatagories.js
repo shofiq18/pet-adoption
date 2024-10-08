@@ -10,6 +10,22 @@ const loadCategories = () => {
 
 };
 
+// const cardDemo = {
+
+//         "petId": 11,
+//         "breed": "French Bulldog",
+//         "category": "Dog",
+//         "date_of_birth": "2023-07-20",
+//         "price": 2500,
+//         "image": "https://i.ibb.co.com/47Sxf3X/pet-11.jpg",
+//         "gender": "Male",
+//         "pet_details": "This adorable male French Bulldog, born on July 20, 2023, is known for his playful and affectionate nature. Fully vaccinated and priced at $2500, he makes a perfect companion for apartment living.",
+//         "vaccinated_status": "Fully",
+//         "pet_name": "Ollie"
+
+// }
+
+
 // all pets categories load function start here
 const loadAllPets = () => {
     //    fetch the data 
@@ -20,26 +36,53 @@ const loadAllPets = () => {
 
 };
 
+//  category wise load pets fuction 
+
+const loadCategoryPets = (id) => {
+    // alert(id);
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error))
+
+}
+
 const displayPets = (pets) => {
     const petsContainer = document.getElementById("all-pets")
+    // petsContainer.innerHTML = "";
+    
+    // if(all-pets.length ==0) {
+    //     petsContainer.innerHTML = "NO content here";
+    //     return;
+    // }
     pets.forEach(pet => {
         console.log(pet);
         const card = document.createElement("div")
-        card.classList = "card bg-base-100 shadow-xl ";
+        card.classList = "card bg-base-100 border-2  border-gray-100 rounded-lg shadow";
         card.innerHTML = `
-             <figure class="px-10 pt-10">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes"
-      class="rounded-xl" />
-  </figure>
-  <div class="card-body items-center text-center">
-    <h2 class="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div class="card-actions">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
+        <figure class="px-5 pt-5 h-[200px]">
+         <img
+         src=${pet.image}
+         alt=""
+        class="rounded-xl h-full w-full object-cover" />
+        </figure>
+        <h4 class="px-5 pt-5 font-bold text-xl">${pet.pet_name}</h4>
+        <div class="px-5 pt-3 text-gray-500 text-base ">
+            <p"><i class="fa-solid fa-grip-vertical mr-3"></i><span>${pet.breed}</span></p>
+         <p"><i class="fa-solid fa-cake-candles mr-3 "></i><span>${pet.date_of_birth}</span></p>
+         <p"><i class="fa-solid fa-mercury  mr-3"></i><span>${pet.gender}</span></p>
+         <p"><i class="fa-solid fa-dollar-sign mr-3 "></i><span>${pet.price}</span></p>
+
+        </div>
+        <div class="divider px-5"></div>
+        <div class=" px-3 md:px-3 lg:px-5 pb-5 gap-4 flex justify-between items-center object-cover">
+
+            <button class=" bg-white px-4 py-2 border-2  border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>    
+           <button class=" px-2 lg:px-4 py-2 bg-white border-2 font-bold  border-gray-200 text-[#0E7A81] rounded-lg">Adopt</button>
+           <button class=" px-2 lg:px-4 py-2 bg-white border-2 font-bold  border-gray-200 text-[#0E7A81] rounded-lg">Details</button>
+           </div>
+
+
              
             `;
         petsContainer.append(card);
@@ -54,11 +97,15 @@ const displayCategories = (categories) => {
     categories.forEach((item) => {
         console.log(item);
         // create a button
-        const button = document.createElement("button");
-        button.classList = "btn";
-        button.innerText = item.category;
+        const buttonContainer = document.createElement("div");
+       buttonContainer.innerHTML = 
+       `
+       <button onclick="loadCategoryPets(${item.id})" class="btn">
+       ${item.category}
+       </button>
+       `;
         // add button to category
-        categoryContainer.append(button);
+        categoryContainer.append(buttonContainer);
 
     })
 
