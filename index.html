@@ -84,37 +84,56 @@
 
          
          <!--show all avialble pets section start here  -->
-         <section class="px-3 lg:max-w-7xl mx-auto gap-2 lg:gap-4py-8 flex ">
+         <section class="px-3 lg:max-w-7xl mx-auto gap-2 lg:gap-4 py-8 flex ">
             <div id="all-pets" class="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 
             </div>
-            <div id="like-pet" class="w-1/4 grid-cols-2 border-2 border-gray-500">
+            <!-- <div id="like-pet" class="w-1/4 grid-cols-2 border-2 border-gray-500">
 
-            </div>
+            </div> -->
+              <!-- Section for liked pets -->
+            <div id="liked-pets" class="mt-10">
+           
+            <div id="liked-pets-list" class="flex flex-wrap gap-4"></div>
+             </div>
          </section>
          
-         <!-- Open the modal using ID.showModal() method -->
+         <!-- pet details modal start here -->
    <button id="showModalData" class="btn hidden" onclick="customModal.showModal()">open modal</button>
-   <dialog id="customModal" class="modal modal-bottom sm:modal-middle">
+   <dialog id="customModal" class="modal modal-middle">
   <div class="modal-box">
     <div id="modalContent">
 
     </div>
     <div class="modal-action">
       <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
         <button class="btn ">Cancel</button>
       </form>
     </div>
      </div>
    </dialog>
+
+
+    <!--  Adopt  Modal structure -->
+    <dialog id="myModal" class="modal modal-middle">
+        <div class="modal-box text-center items-center">
+            <i class="fa-solid text-5xl text-yellow-600 fa-handshake py-3"></i>
+            <h2 class="text-2xl font-bold">Congratulation!</h2>
+            <p class="py-3">Adoption Process is starting for your Pet.</p>
+            <div class="text-black text-3xl font-bold py-3" id="countdown">3</div>
+        </div>
+    </dialog>
+
  
     </main>
+
+
+   
     <!-- footer section start here -->
     <footer>
         <div class=" bg-black">
             <footer
-                class="px-4 py-3 md:flex justify-between items-center lg:flex justify-between  items-center lg:max-w-7xl mx-auto bg-black text-white lg:pt-16 pb-12">
+                class="px-4 py-3 md:flex justify-between items-center lg:flex lg:max-w-7xl mx-auto bg-black text-white lg:pt-16 pb-12">
 
                 <div class="mt-8 lg:mt-0">
                     <div class="flex  gap-3 py-4">
@@ -160,6 +179,6 @@
         </div>
     </footer>
     <!-- scripts link here -->
-     <script src="scripts/btnCatagories.js"></script>
+     <script src="scripts/index.js"></script>
 
 </html>
