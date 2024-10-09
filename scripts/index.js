@@ -49,6 +49,24 @@ const loadCategories = () => {
 };
 
 
+
+ 
+
+// Function to display pets
+let pets = []; 
+
+const loadAllPets = () => {
+    // Fetch the data
+    fetch("https://openapi.programming-hero.com/api/peddy/pets")
+        .then((res) => res.json())
+        .then((data) => {
+            pets = data.pets; 
+            displayPets(pets);
+        })
+        .catch((error) => console.log(error));
+};
+
+// Function to display pets
 const displayPets = (pets) => {
     const petsContainer = document.getElementById("all-pets");
 
@@ -57,21 +75,17 @@ const displayPets = (pets) => {
     if (pets.length === 0) {
         petsContainer.classList.remove('grid');
         petsContainer.innerHTML = `
-            <div class=" py-5 px-3 mx-auto min-h-[300px]  flex flex-col gap-5 justify-center items-center bg-gray-100 rounded-lg">
-            <img src="images/error.webp" alt="">
-            <h2 class="text-center text-3xl font-bold">No Information Available</h2>
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at <br> 
+            <div class="py-5 px-3 mx-auto min-h-[300px] flex flex-col gap-5 justify-center items-center bg-gray-100 rounded-lg">
+                <img src="images/error.webp" alt="">
+                <h2 class="text-center text-3xl font-bold">No Information Available</h2>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at <br> 
                 its layout. The point of using Lorem Ipsum is that it has a.</p>
-           </div>
-
+            </div>
         `;
         return;
     }
 
-    else{
-        petsContainer.classList.add('grid');
-    }
-    // all pet section start here
+    petsContainer.classList.add('grid');
 
     pets.forEach((pet) => {
         const card = document.createElement("div");
@@ -92,15 +106,27 @@ const displayPets = (pets) => {
         </div>
         <div class="divider px-5"></div>
         <div class="px-3 md:px-3 lg:px-5 pb-5 gap-4 flex justify-between items-center">
-            <button onclick="addLikedPet(${pet.image})" class="bg-white px-4 py-2 border-2 border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>
+            <button onclick="addLikedPet('${pet.image}')" class="bg-white px-4 py-2 border-2 border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>
             <button onclick="adoptModal()" class="px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg"> Adopt </button>            
             <button onclick="loadDetails(${pet.petId})" class="px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg">Details</button>
         </div>
         `;
         petsContainer.append(card);
     });
-
 };
+
+
+
+// sort by price (descending) on button click
+document.getElementById('sortButton').addEventListener('click', () => {
+    const sortedPets = pets.sort((a, b) => b.price - a.price);
+    displayPets(sortedPets);
+});
+
+
+
+
+
 
 // adopt modal function start here
 
@@ -141,7 +167,7 @@ const addLikedPet = (pet) => {
     likedPetsList.appendChild(petImage);
 };
 
-// sort by price 
+
 
 
 
@@ -187,20 +213,6 @@ const displayDetails = (petData) => {
 
     document.getElementById("showModalData").click();
 };
-
-
-
-
-const loadAllPets = () => {
-    //    fetch the data 
-    fetch("https://openapi.programming-hero.com/api/peddy/pets")
-        .then((res) => res.json())
-        .then((data) => displayPets(data.pets))
-        .catch((error) => console.log(error))
-
-};
-
-
 
 
 loadCategories();

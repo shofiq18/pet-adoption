@@ -78,7 +78,8 @@
         <!-- Best deal section start here -->
          <div class="px-3 lg:max-w-7xl mx-auto flex justify-between items-center pb-6">
             <h4 class="font-bold text-lg">Best Deal For You</h4>
-            <button class="bg-[#0E7A81] px-8 py-3 rounded-lg text-white ">Sort by Price</button>
+            <button id="sortButton"  class="bg-[#0E7A81] px-8 py-3 rounded-lg text-white ">Sort by Price</button>
+           
 
          </div>
 
@@ -88,30 +89,35 @@
             <div id="all-pets" class="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 
             </div>
-            <!-- <div id="like-pet" class="w-1/4 grid-cols-2 border-2 border-gray-500">
+            <div id="like-pet" class="w-1/4 grid-cols-2 border-2 border-gray-200k rounded-lg">
 
-            </div> -->
+            </div>
+            <!--show all avialble pets section end here  -->
+
+
               <!-- Section for liked pets -->
             <div id="liked-pets" class="mt-10">
            
             <div id="liked-pets-list" class="flex flex-wrap gap-4"></div>
              </div>
          </section>
+
+
          
          <!-- pet details modal start here -->
-   <button id="showModalData" class="btn hidden" onclick="customModal.showModal()">open modal</button>
-   <dialog id="customModal" class="modal modal-middle">
-  <div class="modal-box">
-    <div id="modalContent">
+            <button id="showModalData" class="btn hidden" onclick="customModal.showModal()">open modal</button>
+             <dialog id="customModal" class="modal modal-middle">
+             <div class="modal-box">
+            <div id="modalContent">
 
-    </div>
-    <div class="modal-action">
-      <form method="dialog">
-        <button class="btn ">Cancel</button>
-      </form>
-    </div>
-     </div>
-   </dialog>
+         </div>
+            <div class="modal-action">
+            <form method="dialog">
+             <button class="btn ">Cancel</button>
+             </form>
+            </div>
+             </div>
+         </dialog>
 
 
     <!--  Adopt  Modal structure -->
@@ -178,6 +184,9 @@
 
         </div>
     </footer>
+
+
+
     <!-- scripts link here -->
      <script src="scripts/index.js"></script>
 
