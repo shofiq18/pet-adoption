@@ -116,7 +116,6 @@ const displayPets = (pets) => {
 };
 
 
-
 // sort by price (descending) on button click
 document.getElementById('sortButton').addEventListener('click', () => {
     const sortedPets = pets.sort((a, b) => b.price - a.price);
