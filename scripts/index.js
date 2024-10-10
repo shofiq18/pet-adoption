@@ -1,21 +1,58 @@
 
-// Function to load pets  on the category ID
-const loadCategoryPets = (id) => {
-    // Fetch data  category ID
+// Function to show and hide the  loading spinner inside petsContainer
+
+const showSpinner = () => {
+    const petsContainer = document.getElementById('all-pets');
+    petsContainer.innerHTML = `<div class="flex justify-center items-center text-center py-5">
+        <span class="loading loading-bars loading-lg"></span>
+    </div>`;
+};
+
+const hideSpinner = () => {
+    const petsContainer = document.getElementById('all-pets');
+    petsContainer.innerHTML = '';      // close spinner after loading
+};
+
+
+
+// Function to load pets based on the category ID
+const loadCategoryPets = (id, button) => {
+    showSpinner(); // Show spinner when category button is clicked
+
+    // Fetch data based on category ID
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
-            if (data.data && Array.isArray(data.data)) {
-                displayPets(data.data); 
-            } else {
-                console.error('No pets found for this category or data format is incorrect:', data);
-                const petsContainer = document.getElementById("all-pets");
-                petsContainer.innerHTML = '<p>No pets available in this category.</p>';
-            }
+            setTimeout(() => { // Use setTimeout to delay spinner hiding
+                hideSpinner(); // Hide spinner after 2 seconds
+                if (data.data && Array.isArray(data.data)) {
+                    displayPets(data.data);
+                } else {
+                    console.error('No pets found for this category or data format is incorrect:', data);
+                    const petsContainer = document.getElementById("all-pets");
+                    petsContainer.innerHTML = '<p>No pets available in this category.</p>';
+                }
+            }, 2000);
         })
-        .catch((error) => console.log('Error fetching pets:', error));
+        .catch((error) => {
+            hideSpinner();
+            console.log('Error fetching pets:', error);
+        });
 };
+
+// view more button scroll down start here
+
+const viewMoreButton = document.getElementById("viewMoreButton");
+const adoptSection = document.getElementById("adopt-section");
+
+
+// Add event listener for button click
+viewMoreButton.addEventListener('click', () => {
+    adoptSection.scrollIntoView({
+        block: 'start' // Scrolls to the start of the section
+    });
+});
+
 
 
 
@@ -29,7 +66,7 @@ const displayCategories = (categories) => {
         const buttonContainer = document.createElement("div");
         buttonContainer.innerHTML =
             `
-       <button onclick="loadCategoryPets('${item.category}')" class="btn">
+       <button onclick="loadCategoryPets('${item.category}')" class="bg-white border border-gray-200  px-4 text-lg font-bold lg:px-16 py-5 flex  items-center gap-4 rounded-lg hover:bg-[#0E7A81] transition-all">
        <img class="w-8 h-8" src="${item.category_icon}" alt="category_icon">
        ${item.category}
        </button>
@@ -47,6 +84,7 @@ const loadCategories = () => {
         .then((data) => displayCategories(data.categories))
         .catch((error) => console.log('Error fetching categories:', error));
 };
+
 
 
 
@@ -68,6 +106,7 @@ const loadAllPets = () => {
 
 // Function to display pets
 const displayPets = (pets) => {
+    hideSpinner();
     const petsContainer = document.getElementById("all-pets");
 
     petsContainer.innerHTML = ''; 
@@ -105,10 +144,10 @@ const displayPets = (pets) => {
             <p><i class="fa-solid fa-dollar-sign mr-3"></i><span>Price: ${pet.price}$</span></p>
         </div>
         <div class="divider px-5"></div>
-        <div class="px-3 md:px-3 lg:px-5 pb-5 gap-4 flex justify-between items-center">
-            <button onclick="addLikedPet('${pet.image}')" class="bg-white px-4 py-2 border-2 border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>
-            <button onclick="adoptModal()" class="px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg"> Adopt </button>            
-            <button onclick="loadDetails(${pet.petId})" class="px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg">Details</button>
+        <div class="px-1 md:px-3 lg:px-5 pb-5 gap-1 flex justify-between items-center">
+            <button onclick="loadLikeData('${pet.petId}')" class="bg-white md:px-4 px-2 py-2 border-2 border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>
+            <button onclick="adoptModal()" class="px-1 md:px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg"> Adopt </button>            
+            <button onclick="loadDetails(${pet.petId})" class="px-1 md:px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg">Details</button>
         </div>
         `;
         petsContainer.append(card);
@@ -116,12 +155,18 @@ const displayPets = (pets) => {
 };
 
 
-// sort by price (descending) on button click
-document.getElementById('sortButton').addEventListener('click', () => {
-    const sortedPets = pets.sort((a, b) => b.price - a.price);
-    displayPets(sortedPets);
-});
 
+
+// // sort by price (descending) on button click with show loading spiner 
+
+document.getElementById('sortButton').addEventListener('click', () => {
+    showSpinner();  
+    setTimeout(() => {
+        const sortedPets = pets.sort((a, b) => b.price - a.price);
+        displayPets(sortedPets);
+    }, 2000);  
+
+});
 
 
 
@@ -151,22 +196,22 @@ function adoptModal() {
 }
 
 
+// like button function start here
+const loadLikeData = async (petId) => {
+    const uri = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
+    const res = await fetch(uri)
+    const data = await res.json()
+    addLikePhoto(data.petData)
+}
 
-
-const addLikedPet = (pet) => {
-    const likedPetsList = document.getElementById("liked-pets-list");
-
-    // Create an image element for the liked pet
-    const petImage = document.createElement("img");
-    petImage.src = pet.image;
-    petImage.alt = pet.pet_name;
-    petImage.classList.add("w-24 h-24 object-cover", "rounded", "border", "border-gray-300");
-
-    // Append the image to the liked pets section
-    likedPetsList.appendChild(petImage);
+const addLikePhoto = (petData) => {
+    console.log(petData);
+    const likeContainer = document.getElementById("liked-pets");
+    likeContainer.innerHTML += 
+    `
+        <img class="" src=${petData.image} alt="Pet photo">
+    `; 
 };
-
-
 
 
 
@@ -175,9 +220,9 @@ const addLikedPet = (pet) => {
 const loadDetails = async (petId) => {
     console.log(petId);
     const uri = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
-    const res = await fetch(uri);
-    const data = await res.json();
-    displayDetails(data.petData);
+    const res = await fetch(uri)
+    const data = await res.json()
+    displayDetails(data.petData)
 };
 
 
@@ -216,3 +261,4 @@ const displayDetails = (petData) => {
 
 loadCategories();
 loadAllPets();
+
