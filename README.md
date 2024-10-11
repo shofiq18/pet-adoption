@@ -58,7 +58,7 @@ ES6 modules allow you to organize code into reusable components. You can export 
 To deploy this project run
 
 ```bash
-   Private Github Repo Link : https://github.com/programming-hero-web-course2/b10a6-pet-adoption-shofiq18
+   Private Github Repo Link : 
 ```
 
 ```bash
