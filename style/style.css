@@ -1,0 +1,9 @@
+/* Add this to your CSS file */
+.category-btn.active {
+    background-color: #0E7A81; 
+    color: white;
+}
+
+.category-btn img {
+    
+}

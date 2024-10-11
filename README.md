@@ -57,12 +57,10 @@ ES6 modules allow you to organize code into reusable components. You can export 
 
 To deploy this project run
 
-```bash
-   Private Github Repo Link : 
-```
+
 
 ```bash
-   live link
+   live link :
 ```
 
 
