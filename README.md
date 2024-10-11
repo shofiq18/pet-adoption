@@ -60,7 +60,7 @@ To deploy this project run
 
 
 ```bash
-   live link :
+   live link : test-assignment-6-66666.surge.sh
 ```
 
 
