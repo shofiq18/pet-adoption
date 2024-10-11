@@ -82,8 +82,12 @@ const setActiveCategory = (category) => {
     
     const allButtons = document.querySelectorAll('.category-btn');
     allButtons.forEach(button => button.classList.remove('active'));
+
+    
     const activeButton = document.getElementById(`category-btn-${category}`);
     activeButton.classList.add('active');
+
+
     loadCategoryPets(category);
 };
 
@@ -116,9 +120,7 @@ const loadAllPets = () => {
         .catch((error) => console.log(error));
 };
 
-
 // Function to display pets
-
 const displayPets = (pets) => {
     hideSpinner();
     const petsContainer = document.getElementById("all-pets");
@@ -138,7 +140,6 @@ const displayPets = (pets) => {
         return;
     }
 
-
     petsContainer.classList.add('grid');
 
     pets.forEach((pet) => {
@@ -147,14 +148,14 @@ const displayPets = (pets) => {
         const petDateOfBirth = pet.date_of_birth || 'Not Available';
         const petGender = pet.gender || 'Not Available';
         const petPrice = pet.price || 'Not Available';
-       
+        const petImage = pet.image || 'images/placeholder.webp'; 
 
         const card = document.createElement("div");
         card.classList = "card bg-base-100 border-2 border-gray-100 rounded-lg shadow";
         card.innerHTML = `
         <figure class="px-5 pt-5 h-[200px]">
             <img
-            src="${pet.image}"
+            src="${petImage}"
             alt=""
             class="rounded-xl h-full w-full object-cover" />
         </figure>
@@ -260,11 +261,11 @@ const displayDetails = (petData) => {
     const dateOfBirth = petData.date_of_birth || 'Not Available';
     const price = petData.price || 'Not Available';
     const petDetails = petData.pet_details || 'Details not available';
-    
+    const petImage = petData.image || 'images/placeholder.webp'; 
 
     const detailsContainer = document.getElementById("modalContent");
     detailsContainer.innerHTML = `
-    <img class="w-[100%]" src="${pet.image}">
+    <img class="w-[100%]" src="${petImage}">
     <h4 class="pt-5 font-bold text-xl">${petName}</h4>
         <div class="pt-3 text-gray-500 text-sm ">
           <div class="flex gap-8">
