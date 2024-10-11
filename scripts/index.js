@@ -168,7 +168,7 @@ const displayPets = (pets) => {
         </div>
         <div class="divider px-5"></div>
         <div class="px-1 md:px-3 lg:px-5 pb-5 gap-1 flex justify-evenly md:justify-between lg:justify-between items-center">
-            <button onclick="loadLikeData('${pet.petId}')" class="bg-white px-1 md:px-2 lg:px-4 py-2 border-2 border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>
+            <button onclick="loadLikeData('${pet.petId}')" class="bg-white px-5 md:px-2 lg:px-4 py-2 border-2 border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>
             <button onclick="adoptModal()" class="px-1 md:px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg"> Adopt </button>            
             <button onclick="loadDetails(${pet.petId})" class="px-1 md:px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg">Details</button>
         </div>
