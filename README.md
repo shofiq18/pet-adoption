@@ -11,28 +11,28 @@ Peddy is an innovative platform aimed at simplifying the pet adoption process by
 
 1. User Profiles:
 
-Pet Seekers: Can create personal accounts to track their favorite pets, manage adoption applications, and receive notifications on new pets matching their preferences.
-Shelters/Rescues: Manage available pets, adoption applications, and communicate directly with potential adopters.
+   Pet Seekers: Can create personal accounts to track their favorite pets, manage adoption applications, and receive notifications on new pets matching their preferences.
+   Shelters/Rescues: Manage available pets, adoption applications, and communicate directly with potential adopters.
 
 2. Adoption Process:
 
-An intuitive process to help users apply for adoption directly through the platform.
-Automated status updates and communication channels for both the pet seeker and shelter.
+   An intuitive process to help users apply for adoption directly through the platform.
+   Automated status updates and communication channels for both the pet seeker and shelter.
 
-Detailed descriptions of pets including photos, temperament, medical history, and adoption requirements.
-Profiles include shelter contact information or direct chat options.
+   Detailed descriptions of pets including photos, temperament, medical history, and adoption requirements.
+   Profiles include shelter contact information or direct chat options.
 
 3. Mobile Compatibility:
 
-Responsive design for both web and mobile usage, ensuring a seamless experience on any device.
+   Responsive design for both web and mobile usage, ensuring a seamless experience on any device.
 
 4. Pet Profiles:
 
-Detailed descriptions of pets including photos, temperament, medical history, and adoption requirements.
-Profiles include shelter contact information or direct chat options.
+   Detailed descriptions of pets including photos, temperament, medical history, and adoption requirements.
+   Profiles include shelter contact information or direct chat options.
 
 5. Detailed Pet Profiles:
-Each pet has a comprehensive profile with photos, temperament details, medical history, and adoption requirements, providing adopters with all the information they need.
+   Each pet has a comprehensive profile with photos, temperament details, medical history, and adoption requirements, providing adopters with all the information they need.
 
 
 ## ES6 Features
@@ -60,7 +60,7 @@ To deploy this project run
 
 
 ```bash
-   live link : test-assignment-6-66666.surge.sh
+ test-assignment-6-66666.surge.sh
 ```
 
 
