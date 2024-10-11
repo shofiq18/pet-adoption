@@ -16,7 +16,7 @@ const hideSpinner = () => {
 
 
 // Function to load pets based on the category ID
-const loadCategoryPets = (id, button) => {
+const loadCategoryPets = (id) => {
     showSpinner(); // Show spinner when category button is clicked
 
     // Fetch data based on category ID
@@ -66,7 +66,7 @@ const displayCategories = (categories) => {
         const buttonContainer = document.createElement("div");
         buttonContainer.innerHTML =
             `
-       <button onclick="loadCategoryPets('${item.category}')" class="bg-white border border-gray-200  px-4 text-lg font-bold lg:px-16 py-5 flex  items-center gap-4 rounded-lg hover:bg-[#0E7A81] transition-all">
+       <button onclick="loadCategoryPets('${item.category}')" class="bg-white border border-gray-200  px-4 text-lg font-bold lg:px-16 py-3 lg:py-5 lg:flex justify-center  items-center gap-4 rounded-lg hover:bg-[#0E7A81] transition-all">
        <img class="w-8 h-8" src="${item.category_icon}" alt="category_icon">
        ${item.category}
        </button>
@@ -144,8 +144,8 @@ const displayPets = (pets) => {
             <p><i class="fa-solid fa-dollar-sign mr-3"></i><span>Price: ${pet.price}$</span></p>
         </div>
         <div class="divider px-5"></div>
-        <div class="px-1 md:px-3 lg:px-5 pb-5 gap-1 flex justify-between items-center">
-            <button onclick="loadLikeData('${pet.petId}')" class="bg-white md:px-4 px-2 py-2 border-2 border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>
+        <div class="px-1 md:px-3 lg:px-5 pb-5 gap-1 flex justify-evenly md:justify-between lg:justify-between items-center">
+            <button onclick="loadLikeData('${pet.petId}')" class="bg-white px-1 md:px-2 lg:px-4 py-2 border-2 border-gray-200 rounded-lg"><i class="fa-regular fa-thumbs-up"></i></button>
             <button onclick="adoptModal()" class="px-1 md:px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg"> Adopt </button>            
             <button onclick="loadDetails(${pet.petId})" class="px-1 md:px-2 lg:px-4 py-2 bg-white border-2 font-bold border-gray-200 text-[#0E7A81] rounded-lg">Details</button>
         </div>
