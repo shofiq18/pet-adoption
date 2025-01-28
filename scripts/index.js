@@ -10,21 +10,21 @@ const showSpinner = () => {
 
 const hideSpinner = () => {
     const petsContainer = document.getElementById('all-pets');
-    petsContainer.innerHTML = '';      
+    petsContainer.innerHTML = '';
 };
 
 
 
 // Function to load pets based on the category ID
 const loadCategoryPets = (id) => {
-    showSpinner(); 
+    showSpinner();
 
     // Fetch data based on category ID
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
         .then((res) => res.json())
         .then((data) => {
-            setTimeout(() => { 
-                hideSpinner(); 
+            setTimeout(() => {
+                hideSpinner();
                 if (data.data && Array.isArray(data.data)) {
                     displayPets(data.data);
                 } else {
@@ -49,7 +49,7 @@ const adoptSection = document.getElementById("adopt-section");
 // Add event listener for button click
 viewMoreButton.addEventListener('click', () => {
     adoptSection.scrollIntoView({
-        block: 'start' 
+        block: 'start'
     });
 });
 
@@ -79,11 +79,11 @@ const displayCategories = (categories) => {
 
 // Function to set active category button
 const setActiveCategory = (category) => {
-    
+
     const allButtons = document.querySelectorAll('.category-btn');
     allButtons.forEach(button => button.classList.remove('active'));
 
-    
+
     const activeButton = document.getElementById(`category-btn-${category}`);
     activeButton.classList.add('active');
 
@@ -104,17 +104,17 @@ const loadCategories = () => {
 
 
 
- 
+
 
 // Function to display pets
-let pets = []; 
+let pets = [];
 
 const loadAllPets = () => {
     // Fetch the data
     fetch("https://openapi.programming-hero.com/api/peddy/pets")
         .then((res) => res.json())
         .then((data) => {
-            pets = data.pets; 
+            pets = data.pets;
             displayPets(pets);
         })
         .catch((error) => console.log(error));
@@ -125,7 +125,7 @@ const displayPets = (pets) => {
     hideSpinner();
     const petsContainer = document.getElementById("all-pets");
 
-    petsContainer.innerHTML = ''; 
+    petsContainer.innerHTML = '';
 
     if (pets.length === 0) {
         petsContainer.classList.remove('grid');
@@ -148,7 +148,7 @@ const displayPets = (pets) => {
         const petDateOfBirth = pet.date_of_birth || 'Not Available';
         const petGender = pet.gender || 'Not Available';
         const petPrice = pet.price || 'Not Available';
-        const petImage = pet.image || 'images/placeholder.webp'; 
+        const petImage = pet.image || 'images/placeholder.webp';
 
         const card = document.createElement("div");
         card.classList = "card bg-base-100 border-2 border-gray-100 rounded-lg shadow";
@@ -183,11 +183,11 @@ const displayPets = (pets) => {
 // // sort by price (descending) on button click with show loading spiner 
 
 document.getElementById('sortButton').addEventListener('click', () => {
-    showSpinner();  
+    showSpinner();
     setTimeout(() => {
         const sortedPets = pets.sort((a, b) => b.price - a.price);
         displayPets(sortedPets);
-    }, 2000);  
+    }, 2000);
 
 });
 
@@ -203,16 +203,16 @@ function adoptModal() {
     let count = 3;
 
     countdownEl.textContent = count;
-    modal.showModal(); 
+    modal.showModal();
 
-    const interval = setInterval(function() {
+    const interval = setInterval(function () {
         count--;
         countdownEl.textContent = count;
 
         if (count === 0) {
             clearInterval(interval);
-            setTimeout(function() {
-                modal.close();  
+            setTimeout(function () {
+                modal.close();
             }, 1000);
         }
     }, 1000);
@@ -230,10 +230,10 @@ const loadLikeData = async (petId) => {
 const addLikePhoto = (petData) => {
     console.log(petData);
     const likeContainer = document.getElementById("liked-pets");
-    likeContainer.innerHTML += 
-    `
+    likeContainer.innerHTML +=
+        `
         <img class="" src=${petData.image} alt="Pet photo">
-    `; 
+    `;
 };
 
 
@@ -261,7 +261,7 @@ const displayDetails = (petData) => {
     const dateOfBirth = petData.date_of_birth || 'Not Available';
     const price = petData.price || 'Not Available';
     const petDetails = petData.pet_details || 'Details not available';
-    const petImage = petData.image || 'images/placeholder.webp'; 
+    const petImage = petData.image || 'images/placeholder.webp';
 
     const detailsContainer = document.getElementById("modalContent");
     detailsContainer.innerHTML = `
